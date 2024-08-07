@@ -33,12 +33,12 @@ class MasterDataApi(BaseApi):
         result = self.get_result(url)
         return result
 
-    def get_clients_next_scroll(self, token, start_date, end_date):
+    def get_clients_next_scroll(self, token, start_date, end_date, fields, size):
         """
         start_date: STR in the format yyyy-mm-dd
         end_date: STR in the format yyyy-mm-dd
         """
-        next_url = self._scroll_url() + "?_fields=email,userId,createdIn&_size=1000"
+        next_url = self._scroll_url() + f"?_fields={fields}&_size={size}"
         if start_date and end_date:
             next_url += f"&_where=createdIn between {start_date} AND {end_date}&_token={token}"
         return self.get_result(next_url)
