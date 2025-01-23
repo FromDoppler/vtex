@@ -45,7 +45,7 @@ class OrderManagementApi(BaseApi):
             f"{initial_date.date()}T00:00:00.000Z TO "
             f"{end_dt.date()}T23:59:59.999Z]"
         )
-        params = {"page": f"{page}", "orderBy": "creationDate,asc"}
+        params = {"page": f"{page}", "orderBy": "creationDate,asc", "per_page": 100}
         result = self.session.get(url, params=params, timeout=self.timeout)
         if result.status_code == 200:
             json_response = result.json()
