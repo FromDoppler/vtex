@@ -32,7 +32,7 @@ class BaseApi:
         :return: a namedtuple
         """
         response = self.session.get(url, timeout=self.timeout)
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 206:
             json_response = response.json()
             token = response.headers.get("x-vtex-md-token", None)
         else:
