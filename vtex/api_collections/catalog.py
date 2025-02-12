@@ -60,10 +60,6 @@ class CatalogApi(BaseApi):
         endpoint = f"/pvt/seller/{seller_id}"
         return self._call_api(endpoint)
 
-    def search(self, order_by='OrderByReleaseDateDESC', p_from=None, p_to=None,):
-        endpoint = f"/pub/products/search?O={order_by}"
-        if p_from:
-            endpoint += f',_from={p_from}'
-        if p_to:
-            endpoint += f',p_to={p_to}'
+    def get_products_by_search(self, order_by=None, p_from=None, p_to=None):
+        endpoint = f"/pub/products/search?O={order_by}&_from={p_from}&_to={p_to}"
         return self._call_api(endpoint)
